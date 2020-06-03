@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import application.rest.patient.Patient;
 import application.rest.patient.PatientRepo;
 
 import lombok.extern.slf4j.Slf4j;

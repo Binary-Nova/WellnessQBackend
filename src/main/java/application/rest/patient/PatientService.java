@@ -2,7 +2,6 @@ package application.rest.patient;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,6 +51,11 @@ public class PatientService {
 	public List<Doctor> getMyQueue(String id) {
 		// TODO Auto-generated method stub
 		return repo.findDoctorByid(id);
+	}
+
+	public Patient editPatient(Patient p) {
+		// TODO Auto-generated method stub
+		return repo.save(p);
 	}
 
 //	public void addMyqueue(Category b) {

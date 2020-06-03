@@ -3,9 +3,7 @@ package application.rest.patient;
 
 import java.util.List;
 
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 import application.rest.doctor.Doctor;
 

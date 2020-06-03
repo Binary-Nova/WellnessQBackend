@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import application.rest.Exception.InvalidPasswordException;
-import application.rest.department.Category;
-import application.rest.patient.Patient;
-import application.rest.patient.PatientService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,6 +60,12 @@ public class DoctorService {
 		doc.setQueueToken(--q);
 		log.info("queue token decreased to ..."+doc.getQueueToken());
 		return prepo.save(doc);
+	}
+
+	public Doctor editDoctor(Doctor d) {
+		// TODO Auto-generated method stub
+		return prepo.save(d);
+		
 	}
 
 }

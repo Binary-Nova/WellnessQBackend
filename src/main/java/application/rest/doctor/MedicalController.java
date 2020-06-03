@@ -1,17 +1,16 @@
 package application.rest.doctor;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.rest.department.Category;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,12 +24,25 @@ public class MedicalController {
 
 	@PostMapping("/loginDoctor")
 	public String loginDoctor(@RequestBody Doctor m) {
-		Response res = new Response();
+		//Response res = new Response();
 		String st = doctorservice.getDoctor(m.getEmail(), m.getPassword());
 		log.info("DB Response" + st);
 
 		return st;
 
+	}
+	
+	@PutMapping("/editDoctor")
+	public Doctor editDoctor(@RequestBody Doctor d) {
+		log.info("editing doctor/medical center");
+		return doctorservice.editDoctor(d);
+		 
+	}
+	
+	@GetMapping("/getAllDoctors")
+	public List<Doctor> getAllDoctors(){
+		log.info("getting all doctors....");
+		return doctorservice.getAllDoctor();
 	}
 
 	@PutMapping("/queueplusdoctor")

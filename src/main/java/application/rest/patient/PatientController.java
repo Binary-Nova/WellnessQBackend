@@ -4,16 +4,13 @@ package application.rest.patient;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.rest.doctor.Doctor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -27,6 +24,11 @@ public class PatientController {
 	@PostMapping("/savepatient")
 	public void savePatient(@RequestBody Patient c) {
 		patientservice.savePatient(c);
+	}
+	
+	@PutMapping("editPatient")
+	public Patient editPatient(@RequestBody Patient p) {
+		return patientservice.editPatient(p);
 	}
 
 	@GetMapping("/getallpatient")
