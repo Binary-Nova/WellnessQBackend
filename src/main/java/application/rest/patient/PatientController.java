@@ -39,17 +39,17 @@ public class PatientController {
 
 	}
 	
-	@PostMapping("/getmyqueued")
-	public List<Doctor> getMyQueue(@RequestBody Patient c){
-		return patientservice.getMyQueue(c.getId());
-	}
+//	@PostMapping("/getmyqueued")
+//	public List<Doctor> getMyQueue(@RequestBody Patient c){
+//		return patientservice.getMyQueue(c.getId());
+//	}
 	
 
 
 	@PostMapping("/loginPatient")
 	public String loginCon(@RequestBody Patient c) {
-		log.info("Request to login API" + c.getEmail() + " " + c.getPassword());
-		String st = patientservice.getPatient(c.getEmail(), c.getPassword());
+		log.info("Request to login API... \n ph number" + c.getPhoneNumber() + " \n name" + c.getName());
+		String st = patientservice.getPatient(c.getName(), c.getPhoneNumber());
 		return st;
 
 	}

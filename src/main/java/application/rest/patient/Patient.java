@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import application.rest.department.Category;
+import application.rest.doctor.Doctor;
 import lombok.Data;
 
 @Data
@@ -15,12 +16,9 @@ import lombok.Data;
 public class Patient {
 	@Id
 	private String id;
-	private String email;
-	private String password;
 	private String name;
 	private long phoneNumber;
 	private String latitude;
 	private String longitude;
 	private long queueToken;
-    private List<Category> doctor_list;
 }

@@ -30,28 +30,26 @@ public class PatientService {
 		return (List<Patient>) repo.findAll();
 	}
 
-	public String getPatient(String email, String password) {
+	public String getPatient(String name, long number) {
 		// TODO Auto-generated method stub
-		Patient c = repo.findByEmail(email);
-		if (c != null) {
-			if (c.getPassword().equalsIgnoreCase(password))
-				return "success";			
-			else
-				throw new InvalidPasswordException("Password Invalid");
-		} else
-		{
+		Patient c = repo.findByPhoneNumber(number);
+		if(c==null) {
 			Patient p = new Patient();
-			p.setEmail(email);
-			p.setPassword(password);
+			p.setName(name);
+			p.setPhoneNumber(number);
 			repo.save(p);
 			return "created";
 		}
+		else if ((c != null) && (name.equalsIgnoreCase(c.getName()))) {
+				return "success";			
+			}
+		return "failed";
 	}
 
-	public List<Doctor> getMyQueue(String id) {
-		// TODO Auto-generated method stub
-		return repo.findDoctorByid(id);
-	}
+//	public List<Doctor> getMyQueue(String id) {
+//		// TODO Auto-generated method stub
+//		return repo.findDoctorByid(id);
+//	}
 
 	public Patient editPatient(Patient p) {
 		// TODO Auto-generated method stub

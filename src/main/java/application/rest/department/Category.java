@@ -16,6 +16,4 @@ public class Category {
 	@Id
 	private String id;
 	private String desc;
-	private String longitude;
-	private String latitude;
 }

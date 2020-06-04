@@ -43,7 +43,7 @@ public class CategoryController {
 	}
 	
 	
-	@GetMapping("/getallbusiness")
+	@GetMapping("/getallcategory")
 	public List<Category> getAllCategory()
 	//TODO change return type
 	{ 
