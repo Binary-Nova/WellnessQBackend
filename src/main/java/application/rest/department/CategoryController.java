@@ -21,25 +21,25 @@ public class CategoryController {
 	CategoryService categoryservice;
 	
 	@PostMapping("/savecategory")
-	public void saveCategory(@RequestBody Category b)
+	public Category saveCategory(@RequestBody Category b)
 	{
 		log.info("saving category..."+b.getName());
-		categoryservice.saveCategory(b);
+		return categoryservice.saveCategory(b);
 	}
 	
 	
 	@PutMapping("/updatecategory")
-	public void updateCategory(@RequestBody Category b)
+	public Category updateCategory(@RequestBody Category b)
 	{
 		log.info("updating category..."+b.getName());
-		categoryservice.updateCategory(b);
+		return categoryservice.updateCategory(b);
 	}
 	
 	@DeleteMapping("/deletecategory")
-	public void deleteCategory(@RequestBody Category b)
+	public String deleteCategory(@RequestBody Category b)
 	{
 		log.info("deleting Category..."+b.getName());
-		categoryservice.deleteCategory(b);
+		return categoryservice.deleteCategory(b);
 	}
 	
 	

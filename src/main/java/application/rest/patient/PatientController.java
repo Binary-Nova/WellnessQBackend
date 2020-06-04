@@ -26,7 +26,7 @@ public class PatientController {
 		patientservice.savePatient(c);
 	}
 	
-	@PutMapping("editPatient")
+	@PutMapping("/editPatient")
 	public Patient editPatient(@RequestBody Patient p) {
 		return patientservice.editPatient(p);
 	}
