@@ -20,5 +20,5 @@ public class Patient {
 	private long phoneNumber;
 	private String lattitude;
 	private String longitude;
-	private long queueToken;
+	private int queueToken;
 }

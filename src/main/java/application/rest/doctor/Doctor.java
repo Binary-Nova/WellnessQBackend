@@ -18,8 +18,8 @@ public class Doctor {
 	private String category;
 	private String lattitude;
 	private String longitude;
-	private List<HashMap<String,Long>> timeslotMap;
-	private long queueCapacity;
+	private List<HashMap<String,Integer>> timeslotMap;
+	private int queueCapacity;
 	private long phoneNumber;
 	
 }

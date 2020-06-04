@@ -50,18 +50,18 @@ public class DoctorService {
 	public Doctor queueIncrementDoctor(String slot, Doctor b) {
 		// TODO Auto-generated method stub
 		Doctor doc = prepo.findById(b.getId());
-		List<HashMap<String, Long>> listOfSlotsQ = doc.getTimeslotMap();
+		List<HashMap<String, Integer>> listOfSlotsQ = doc.getTimeslotMap();
 		for (int i = 0; i < listOfSlotsQ.size(); i++) {
 			Iterator hmIterator = listOfSlotsQ.get(i).entrySet().iterator();
-			HashMap<String, Long> qmap = new HashMap<String, Long>();
+			HashMap<String, Integer> qmap = new HashMap<String, Integer>();
 			while (hmIterator.hasNext()) {
 				Map.Entry mapElement = (Map.Entry) hmIterator.next();
 				if (mapElement.getKey().equals(slot)) {
-					long queueToken = ((long) mapElement.getValue() + 1);
+					int queueToken = ((int) mapElement.getValue() + 1);
 					System.out.println(mapElement.getKey() + " : " + queueToken);
 					mapElement.setValue(queueToken);
 				} // end if
-				qmap.put(mapElement.getKey().toString(), (long) mapElement.getValue());
+				qmap.put(mapElement.getKey().toString(), (int) mapElement.getValue());
 			} // end while
 			listOfSlotsQ.set(i, qmap);
 		}
@@ -71,18 +71,18 @@ public class DoctorService {
 	public Doctor queueDecrementDoctor(String slot, Doctor b) {
 		// TODO Auto-generated method stub
 		Doctor doc = prepo.findById(b.getId());
-		List<HashMap<String, Long>> listOfSlotsQ = doc.getTimeslotMap();
+		List<HashMap<String, Integer>> listOfSlotsQ = doc.getTimeslotMap();
 		for (int i = 0; i < listOfSlotsQ.size(); i++) {
-			Iterator<Entry<String, Long>> hmIterator = listOfSlotsQ.get(i).entrySet().iterator();
-			HashMap<String, Long> qmap = new HashMap<String, Long>();
+			Iterator<Entry<String, Integer>> hmIterator = listOfSlotsQ.get(i).entrySet().iterator();
+			HashMap<String, Integer> qmap = new HashMap<String, Integer>();
 			while (hmIterator.hasNext()) {
 				Map.Entry mapElement = (Map.Entry) hmIterator.next();
 				if (mapElement.getKey().equals(slot)) {
-					long queueToken = ((long) mapElement.getValue() - 1);
+					int queueToken = ((int) mapElement.getValue() - 1);
 					System.out.println(mapElement.getKey() + " : " + queueToken);
 					mapElement.setValue(queueToken);
 				} // end if
-				qmap.put(mapElement.getKey().toString(), (long) mapElement.getValue());
+				qmap.put(mapElement.getKey().toString(), (int) mapElement.getValue());
 			} // end while
 			listOfSlotsQ.set(i, qmap);
 		} // end for
@@ -96,25 +96,22 @@ public class DoctorService {
 	}
 
 	public List<Doctor> getAvailableDoctor(String category, String slot) {
-	//public List<Doctor> getAvailableDoctor(JSONObject json) {
-		// TODO Auto-generated method stub
-//		String category = json.get("category").toString();
-//		String slot = json.get("timeslot").toString();
 		List<Doctor> doctorlist = prepo.findAllDoctorsByCategory(category);
 		List<Doctor> availableDoctors = new ArrayList<Doctor>();
-		for (int i = 0; i < doctorlist.size(); i++)// list doctors according to category
+		for (int i = 0; i < doctorlist.size(); i++)// list doctors acc category
 		{
 			Doctor doc = doctorlist.get(i);
-			List<HashMap<String, Long>> listOfSlotsQ = doc.getTimeslotMap();
-			long queueCapacity = doc.getQueueCapacity();
+			List<HashMap<String, Integer>> listOfSlotsQ = doc.getTimeslotMap();
+			int queueCapacity = doc.getQueueCapacity();
 			boolean flag = false;
 			for (int j = 0; j < listOfSlotsQ.size(); j++)// slotQ list
 			{
-				Iterator<Entry<String, Long>> hmIterator = listOfSlotsQ.get(i).entrySet().iterator();
+				HashMap<String, Integer> SlotQueueMap=listOfSlotsQ.get(j);
+				Iterator<Entry<String, Integer>> hmIterator =SlotQueueMap.entrySet().iterator();
 				while (hmIterator.hasNext()) {
 					Map.Entry mapElement = (Map.Entry) hmIterator.next();
 					if (mapElement.getKey().equals(slot)) {
-						long queue = (queueCapacity - (long) mapElement.getValue());
+						int queue =  (queueCapacity - (int) mapElement.getValue());
 						System.out.println(mapElement.getKey() + " : " + queue);
 						if (queue != 0)// check queue is full or not
 							flag = true;
