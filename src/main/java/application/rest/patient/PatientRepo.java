@@ -5,11 +5,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import application.rest.doctor.Doctor;
 
-public interface PatientRepo extends CrudRepository<Patient,Long> {
+public interface PatientRepo extends CrudRepository<Patient,String> {
 	
-	Patient findByPhoneNumber(long phoneNumber);
-//	List<Doctor> findDoctorByid(String id);
+	Patient findByPhoneNumber(String patientPhoneNumber);
+	List<Patient> findBySlot(String timeslot);
  
 }

@@ -14,11 +14,13 @@ import lombok.Data;
 @Document
 
 public class Patient {
-	@Id
-	private String id;
+	
 	private String name;
-	private long phoneNumber;
+	@Id
+	private String phoneNumber;
 	private String lattitude;
 	private String longitude;
 	private int queueToken;
+	private List<String> doctorsPhoneNumber;
+	private String slot;
 }

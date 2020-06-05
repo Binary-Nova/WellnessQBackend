@@ -49,15 +49,15 @@ public class MedicalController {
 		return doctorservice.getAllDoctor();
 	}
 
-	@PutMapping("/queueplusdoctor/{slot}")
-	public Doctor incrementQueue(@PathVariable String slot, @RequestBody Doctor b) 
+	@PutMapping("/queueplusdoctor/{slot}/{patientPhoneNumber}")
+	public int incrementQueue(@PathVariable String slot,@PathVariable String patientPhoneNumber, @RequestBody Doctor b) 
 	{
 		log.info("Token + request");
-		return doctorservice.queueIncrementDoctor(slot,b);
+		return doctorservice.queueIncrementDoctor(slot,patientPhoneNumber,b);
 	}
 	
 	@PutMapping("/queueminusdoctor/{slot}")
-	public Doctor decrementQueue(@PathVariable String slot, @RequestBody Doctor b) 
+	public int decrementQueue(@PathVariable String slot, @RequestBody Doctor b) 
 	{
 		log.info("Token - request");
 		return doctorservice.queueDecrementDoctor(slot,b);
@@ -68,11 +68,4 @@ public class MedicalController {
 	public List<Doctor> getAvailableDoctors(@PathVariable String category, @PathVariable String slot) {
 		return doctorservice.getAvailableDoctor(category , slot);
 	}
-
-//	public List<Doctor> getAvailableDoctors(@RequestBody JSONObject json){
-////		return doctorservice.getAvailableDoctor(category , slot);
-//		return doctorservice.getAvailableDoctor(json);
-//	}
-
-
 }
