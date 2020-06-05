@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import application.rest.Exception.InvalidPasswordException;
+
 
 import application.rest.doctor.Doctor;
 import application.rest.doctor.DoctorRepo;
@@ -47,34 +47,14 @@ public class PatientService {
 		return "failed";
 	}
 
-	public List<Doctor> getMyQueue(String patientPhoneNumber) {
-		
-		// TODO Auto-generated method stub
-		Patient p = repo.findByPhoneNumber(patientPhoneNumber);
-		List<String> docphnumList = p.getDoctorsPhoneNumber();
-		List<Doctor> visitDoc = new ArrayList<Doctor>();
-		for (int i = 0; i < docphnumList.size(); i++) {
-			String docPhNum = docphnumList.get(i);
-			Doctor d = prepo.findByPhoneNumber(docPhNum);
-			visitDoc.add(d);
-		}
-		return visitDoc;
-	}
+	
 
 	public Patient editPatient(Patient p) {
 		// TODO Auto-generated method stub
 		return repo.save(p);
 	}
 
-	public String removeDoctorFromList(String patientPhoneNumber, String doctorPhoneNumber) {
-		// TODO Auto-generated method stub
-		Patient p = repo.findByPhoneNumber(patientPhoneNumber);
-		List<String> docphnumList = p.getDoctorsPhoneNumber();
-		if (docphnumList.remove(doctorPhoneNumber))
-			return "deleted";
-		else
-			return "failed";
-	}
+	
 
 	public int getTokenNum(String slot, String patientPhoneNumber) {
 		// TODO Auto-generated method stub

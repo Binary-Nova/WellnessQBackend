@@ -45,6 +45,7 @@ public class PatientController {
 	
 	@RequestMapping(path = "/getmyToken/{phone}", method = RequestMethod.GET)
 	public int getAvailableDoctors(@PathVariable String phone) {
+		log.info("Request to login get token by patiend..."+phone);
 		return patientservice.getMyToken(phone);
 	}
 	

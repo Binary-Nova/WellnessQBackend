@@ -21,6 +21,6 @@ public class Patient {
 	private String lattitude;
 	private String longitude;
 	private int queueToken;
-	private List<String> doctorsPhoneNumber;
+	private String doctorsPhoneNumber;
 	private String slot;
 }

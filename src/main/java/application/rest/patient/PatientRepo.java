@@ -14,5 +14,8 @@ public interface PatientRepo extends CrudRepository<Patient,String> {
 	 
 	 @Query("{slot : ?0}")
 	List<Patient> findBySlot(String slot);
+    
+	 @Query("{slot : ?0, doctorsPhoneNumber : ?1}") 
+	List<Patient> findBySlotAndDocPhone(String slot, String phoneNumber);
  
 }
